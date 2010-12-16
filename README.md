@@ -24,6 +24,23 @@ Actionscript and Javascript are doing their own things, only use bridge in commu
 ------------
 原则：尽量避免潜在冲突，同时力求精简短小和见名知意。
 
+ - Flash 容器 hook 命名: FC_xxxx, 如 FC_DynamicPublishing
+ - Flash Player hook 命名: FP_xxxx, 如 FP_StaticPublishing
+ - class/id 命名: ks-ajb-comp[-xxx],如 ks-ajb-store,ks-ajb-store-alimama,ks-ajb-store-taobao 
+ - data 属性命名： data-ks-comp[-xxx] 比如：data-ks-suggest
+ - 强烈不鼓励使用全局变量
+
+开发方式：
+ - 目录保持一致,以下目录保持在同级目录：
+    - kissy (https://github.com/kissyteam/kissy) 
+    - ajbridge-as3core (https://github.com/kissyteam/kissy-ajbridge)
+    - kissy-ajbridge (https://github.com/kingfo/ajbridge-as3core)
+ - 推荐采用  flashdevelop 工具开发 AS 相关工程 (http://www.flashdevelop.org)
+
+
+
+
+
 
 Other
 ----------

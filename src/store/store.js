@@ -29,7 +29,7 @@ AJBridge.add('store', function(A) {
         }
 
         flashvars.useCompression = (S.isUndefined(useCompression) ? true : useCompression) + '';
-
+		config.params = config.params || {};
         config.params.flashvars = S.merge(config.params.flashvars, flashvars);
         Store.superclass.constructor.call(this, id, config);
     }
@@ -49,6 +49,8 @@ AJBridge.add('store', function(A) {
             'displaySettings',
             'getUseCompression',
             'getSize',
+            'checkout',
+            'destroy',
             'setMinDiskSpace'
         ]
         );
@@ -59,6 +61,7 @@ AJBridge.add('store', function(A) {
 
 /**
  * NOTES:
- * 2010/08/12    重构了代码，基于AJBridge 1.0.10
- * 2010/08/27    重构了代码，基于AJBridge 1.0.12
+ * 2010/08/12   重构了代码，基于AJBridge 1.0.10
+ * 2010/08/27   重构了代码，基于AJBridge 1.0.12
+ * 2010/11/21	增加了checkout功能
  */

@@ -1,216 +1,44 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="utf-8"/>
-		<title>Store Test</title>
+		<title>AJBridge Store Test Runner</title>
+		<!-- include jasmine  -->
+		<link rel="stylesheet" href="../../tests/jasmine/jasmine.css">
+		<script src="../../tests/jasmine/jasmine.js"></script>
+		<script src="../../tests/jasmine/jasmine-html.js"></script>
+		
+		<!-- basic -->
+		<script src="../../../kissy/build/kissy.js"></script>
+		<script src="../../../kissy/build/flash/flash-pkg.js"></script> 
+		
+		<!-- ajbridge -->
+		<script src="../ajbridge/ajbridge.js"></script>
+		
+		<!-- comp... -->
+		<script src="store.js"></script>
+		<script src="tests/store-spec.js"></script>
+		
 	</head>
 	<body>
-		<h2>AJBridge Store test</h2>
-		<script src="../../../kissy/build/test/test.js"></script>
-		<script>KISSY.Test.Config.times = 1;</script>
-		
-		<script src="../../../kissy/build/kissy.js"></script>
-		<script src="../../../kissy/build/flash/flash-pkg.js"></script>
-		
-		
-		<script src="../ajbridge/ajbridge.js"></script>
-		<script src="store.js"></script>
-		
-		<!-- 打包代码测试
-		<script src="../../build/store/store-pkg.js"></script>
-		-->
-		
-		<div id="myFlashContent">
-			 <a href="http://www.adobe.com/go/getflashplayer"> 
-	         <img src="../../assets/get_flash_player.gif" alt="Get Adobe Flash player" />
-	         </a> 
-		</div>
-		<br/>
-		<button type="button" onclick="length();">length</button>
-		<button type="button" onclick="setItem();">setItem</button>
-		<button type="button" onclick="setItemByCustom();">setItemByCustom</button>
-		<button type="button" onclick="getItem();">getItem</button>
-		<button type="button" onclick="getItemByCustom();">getItemByCustom</button>
-		<button type="button" onclick="key();">key</button>
-		<button type="button" onclick="keyByCustom();">keyByCustom</button>
-		<button type="button" onclick="removeItem();">removeItem</button>
-		<button type="button" onclick="removeItemByCustom();">removeItemByCustom</button>
-		<button type="button" onclick="cls();">clear</button>
-		<button type="button" onclick="getModificationDate();">getModificationDate</button>
-		<button type="button" onclick="hasAdequateDimensions();">hasAdequateDimensions</button>
-		<button type="button" onclick="displaySettings();">displaySettings</button>
-		<button type="button" onclick="getUseCompression();">getUseCompression</button>
-		<button type="button" onclick="getUseCompression();">getUseCompression</button>
-		<button type="button" onclick="getSize();">getSize</button>
-		<button type="button" onclick="setMinDiskSpace();">setMinDiskSpace</button>
-		
-		
 		<script>
-			var S = KISSY,
-				F = S.Flash,
-				A = AJBridge,
-				t,
-				SWFStore = A.Store,
-				config ={
-					src:"store.swf",
-					params:{
-						bgcolor:"#CCCCCC"
-					}
-				},
-				id="myFlashContent",
-				store = new SWFStore(id,config),
-				KEY = "sample2",
-				VAL = "hello world~",
-				cK,cV;
-			debugger
-				function test_create(test){
-					store.on("failed", function(ev) {
-			            test.fail();
-			            test.echo('failed：' + ev.message.status);
-			        });
-					store.on("init",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("addCallback",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("addCallbacks",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("swfReady",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-						S.log(store);
-					});
-					
-					store.on("initialize",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("contentReady",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("new",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("storage",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("status",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("pending",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("reload",function(ev){
-						test.echo('id: ' + ev.id+',type: ' + ev.type +", hasData: "+ev.info.isSuccess);
-					});
-					store.on("clear",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					store.on("showSettings",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
-					});
-					
-					store.on("error",function(ev){
-						test.echo(	'id: ' + ev.id,
-									',type: ' + ev.type,
-									',info: ' + ev.info,
-									"</p>");
-						test.fail();
-						S.log(ev);
-					});
-					
-					
-					store.init();
-					t = test;
-				}
-				
-				
-				
-			
-			function length(){
-				t.echo(store.getLength());
-			}
-			
-			function getItem(){
-				t.echo(store.getItem(KEY));
-			}
-			
-			function setItem(){
-				store.setItem(KEY,VAL);
-				t.echo("setItem now");
-			}
-				
-			function key(){
-				t.echo(store.key(0)+"<br/>");
-			}	
-			
-			function removeItem(){
-				store.removeItem(KEY);
-				t.echo("removeItem:"+KEY+"<br/>");
-			}
-			
-			function cls(){
-				store.clear();
-				t.echo("clear:"+"<br/>");
-			}
-			
-			function setItemByCustom(){
-				cK = prompt("input key:");
-				if(cK&&cK.length>0){
-					cV = prompt("input value:");
-					if(!cV||cV.length<1)cV = "null";
-					store.setItem(cK,cV);
-					t.echo("setItemByCustom now");
-				}
-			}
-			
-			function getItemByCustom(){
-				cK = prompt("input key:");
-				if(cK&&cK.length>0){
-					t.echo(store.getItem(cK));
-				}
-			}
-			
-			function keyByCustom(){
-				var i = prompt("input index:");
-					t.echo(store.key(i)+"<br/>");
-			}
-			
-			function removeItemByCustom(){
-				cK = prompt("input key:");
-				if(cK&&ck.length>0){
-					store.removeItem(KEY);
-					length();
-				}
-			}
-			
-			
-			function getModificationDate(){
-				t.echo("ModificationDate:"+store.getModificationDate()+"<br/>");
-			}
-			
-			function hasAdequateDimensions(){
-				t.echo("hasAdequateDimensions:"+store.hasAdequateDimensions()+"<br/>");
-			}
-			function displaySettings(){
-				if(store.hasAdequateDimensions){
-					store.displaySettings();
-				}else{
-					t.fail();
-				}
-			}
-			function getUseCompression(){
-				t.echo("getUseCompression:"+store.getUseCompression()+"<br/>");
-			}
-			function getSize(){
-				t.echo("getSize:"+store.getSize(),"Bytes</p>");
-			}
-			function setMinDiskSpace(){
-				var size = prompt("input min disk space(B):");
-				if(!size || isNaN(size)) size = 1000;
-				t.echo("setMinDiskSpace.Status:"+store.setMinDiskSpace(size),"Bytes</p>");
-			}
-				
+		    jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+		    jasmine.getEnv().execute();
 		</script>
+		
+		<h2>FC_ConfigurableStore:</h2>
+		<div id="FC_ConfigurableStore">
+		    <a href="http://www.adobe.com/go/getflashplayer">
+		        <img src="../../assets/get_flash_player.gif" alt="Get Adobe Flash player"/>
+		    </a>
+		</div>
+		
+		<h2>FC_UnconfigurableStore:</h2>
+		<div id="FC_UnconfigurableStore">
+		    <a href="http://www.adobe.com/go/getflashplayer">
+		        <img src="../../assets/get_flash_player.gif" alt="Get Adobe Flash player"/>
+		    </a>
+		</div>
+		<p>application window size is at least 215 x 138 pixels</p>
+		
 	</body>
 </html>

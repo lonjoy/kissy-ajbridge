@@ -10,7 +10,8 @@
 				overflow:hidden;
 			}
 
-			.sel object {
+			.sel object,
+			.sel embed {
 				position:absolute;
 				left:0;
 				top:0;
@@ -76,10 +77,10 @@
 		<script src="uploader.js"></script>
 		
 		<div class="box">
-			<p class="sel">
-				<i id="myFlashContent"> </i>
+			<div class="sel">
+				<div id="swfcontent"> </div>
 				<a href="#" class="browser" id="J_Trigger">选择文件</a> 
-			</p>
+			</div>
 			<div class="filelist hidden" id="J_List">
 				<ul></ul>
 				<p>
@@ -91,8 +92,9 @@
 		
 		<script>
 			(function(S) {
-				var uploader = new AJBridge.Uploader('myFlashContent', {
+				var uploader = new AJBridge.Uploader('swfcontent', {
 						src:'uploader.swf',
+						id:"myFlashContent",
 						params:{
 							bgcolor:"#FFCCCC",
 							wmode:"transparent"
@@ -101,7 +103,6 @@
 							width:72,
 							height:21
 						},
-						
 						hand:true,
 						btn:true
 					}),
@@ -110,13 +111,12 @@
 					trigger = S.get('#J_Trigger'),
 					container = S.get('#J_List'),
 					ul = D.get('ul', container),
-					serverURL ="upload.php",
+					serverURL ="http://127.0.0.1:8080/upload.php",
 					serverParams = {
 							username:"user",
 							password:"1297ew9jd23888s834u3j2u38"
 						},
-					method = "POST",
-					hasResponse = true;
+					method = "POST";
 
 
 				//加载事件
@@ -160,7 +160,7 @@
 					if(D.hasClass(target, 'upload')) {
 						ev.preventDefault();
 						//上传单个文件
-						uploader.upload(D.parent(target).getAttribute('data-id'),serverURL, method, serverParams,hasResponse);
+						uploader.upload(D.parent(target).getAttribute('data-id'),serverURL, method, serverParams);
 						ul.removeChild(target.parentNode);
 						if(D.children(ul).length == 0) {
 							D.addClass(container, 'hidden');
@@ -176,7 +176,7 @@
 					} else if(D.hasClass(target, 'clear')) {
 						//清除所有文件
 						while(target = D.children(ul)[0]) {
-							//uploader.removeFile(target.getAttribute('data-id'));
+							uploader.removeFile(D.parent(target).getAttribute('data-id'));
 							ul.removeChild(target);
 						}
 						uploader.clear();
@@ -184,18 +184,29 @@
 
 					} else if(D.hasClass(target, 'start')) {
 						//开始上传
-						uploader.uploadAll(serverURL, method, serverParams,hasResponse);
+						uploader.uploadAll(serverURL, method, serverParams);
+						while(target = D.children(ul)[0]) {
+							ul.removeChild(target);
+						}
+						D.addClass(container, 'hidden');
 					}
 				});
-				
-				
 
-				uploader.init();
-
-				//过滤文件类型
-				uploader.on("contentReady",function(ev){
+				//过滤文件类型  
+				// 务必 bridgeReady 后执行
+				uploader.on("bridgeReady",function(ev){
 					// flash 完成代码初始化
 					uploader.browse(true, [{desc:"PNG,GIF", ext:"*.png;*.gif"}, {desc:"SWF", ext:"*.swf"}]);
+				});
+				
+				uploader.on("uploadComplete",function(ev){
+					// flash 完成代码初始化
+					alert(ev.file.name + "上传成功");
+				});
+				
+				uploader.on("uploadListComplete",function(ev){
+					// flash 完成代码初始化
+					alert("全部上传成功");
 				});
 
 			})(KISSY);

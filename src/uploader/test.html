@@ -10,7 +10,9 @@
 		<script>KISSY.Test.Config.times = 1;</script>
 		
 		<script src="../../../kissy/build/kissy.js"></script>
-		<script src="../../../kissy/build/flash/flash-pkg.js"></script>
+		<script src="../../../kissy/src/flash/flash.js"></script>
+		<script src="../../../kissy/src/flash/flash-ua.js"></script>
+		<script src="../../../kissy/src/flash/flash-embed.js"></script>
 		
 		
 		<script src="../ajbridge/ajbridge.js"></script>
@@ -25,8 +27,7 @@
 		<button type="button" onclick="browse();">browse</button>
 		<button type="button" onclick="browseMedia();">browseMedia</button>
 		<button type="button" onclick="upload();">upload ALL</button>
-		<button type="button" onclick="upload2();">upload ALL hasResponse</button>
-		<button type="button" onclick="upload3();">upload ALL nonResponse</button>
+		<button type="button" onclick="upload2();">upload with data</button>
 		<button type="button" onclick="getFile();">getFile</button>
 		<button type="button" onclick="removeFile();">removeFile</button>
 		<button type="button" onclick="cancel();">cancel</button>
@@ -47,8 +48,7 @@
 					src:"uploader.swf",
 					params:{
 						bgcolor:"#FFCCCC",
-						wmode:"opaque",
-						scale:"showall"
+						wmode:"window"
 					},
 					attrs:{
 						width:60,
@@ -56,7 +56,6 @@
 					},
 					ds:"http://127.0.0.1:8080/upload.php",
 					dsp:{username:"admin",password:"cmd"},
-					dsr:true,
 					hand:true,
 					btn:true
 				},
@@ -92,7 +91,6 @@
 					});
 					
 					// 2.添加常规 内容 监听
-					
 					uploader.on("contentReady",function(ev){
 						// flash 完成代码初始化
 						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
@@ -135,7 +133,7 @@
 						test.echo('id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"<br/>");
 						test.echo( encodeURI(ev.data)+"<br/>");
 					});
-					uploader.on("listComplete",function(ev){
+					uploader.on("uploadListComplete",function(ev){
 						// 所有文件上传成功
 						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
@@ -144,11 +142,11 @@
 						test.fail();
 						test.echo('id: ' + ev.id,',type: ' + ev.type+", event:" + S.JSON.stringify(ev) +"<br/>");
 					});
-					
 					// 3.添加鼠标事件 监听
 					uploader.on("mouseOver",function(ev){
-						test.echo('id: ' + ev.id,',type: ' + ev.type /*+ ", event:" + S.JSON.stringify(ev)*/ +"<br/>");
+						test.echo('id: ' + ev.id,',type: ' + ev.type  +"<br/>");
 					});
+					
 					uploader.on("mouseDown",function(ev){
 						test.echo('id: ' + ev.id,',type: ' + ev.type+"<br/>");
 					});
@@ -190,19 +188,10 @@
 				uploader.uploadAll("http://127.0.0.1:8080/upload.php","POST",{
 						username:"user",
 						password:"1297ew9jd23888s834u3j2u38"
-				},true)
+				})
 				+ "<br/>");
 			}
-			function upload3(){
-				//TODO:
-				// 重定义上传路径
-				T.echo('upload nonResponse: ' + 
-				uploader.uploadAll("http://127.0.0.1:8080/upload.php","POST",{
-						username:"user",
-						password:"1297ew9jd23888s834u3j2u38"
-				},false)
-				+ "<br/>");
-			}
+			
 			function cancel(){
 				uploader.cancel(files[0].id);
 			}
