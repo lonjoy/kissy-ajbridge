@@ -19,7 +19,7 @@ KISSY.add('ajbridge', function(S) {
      */
     function AJBridge(id, config,manual) {
         id = id.replace(ID_PRE, ''); // 健壮性考虑。出于 KISSY 习惯采用 id 选择器
-        config = Flash._normalize(config); // 标准化参数关键字
+        config = Flash._normalize(config||{}); // 标准化参数关键字
 
         var self = this,
             target = ID_PRE + id, // 之所以要求使用 id，是因为当使用 ajbridge 时，程序员自己应该能确切知道自己在做什么
@@ -35,12 +35,12 @@ KISSY.add('ajbridge', function(S) {
                 // 如果这 AJBridge 先于 DOMReady 前执行 则失效
                 // 建议配合 S.ready();
                 if (!data.dynamic || !config.src) {
-                    self.activate();
+						self.activate();
                 }
             };
 		
 		// 自动产生 id	
-		config.id = config.id  || S.guid(PREFIX);
+		config.id = config.id || S.guid(PREFIX);
 
         // 注册应用实例
         AJBridge.instances[config.id] = self;

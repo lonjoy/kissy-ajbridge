@@ -22,7 +22,7 @@ package {
 		override public function init():void {
 			super.init();
 			// entry point
-			
+			trace(1);
 			
 			var params: Object = stage.loaderInfo.parameters;
 			var callbacks: Object = { };
@@ -35,8 +35,7 @@ package {
 			
 			// 创建并配置实例
 			clipboard = new com.xintend.ajbridge.local.clipboard.Clipboard();
-			clipboard.addEventListener(com.xintend.ajbridge.local.clipboard.Clipboard.CONTENT_READY, clipboardEventHandler);
-			clipboard.addEventListener(com.xintend.ajbridge.local.clipboard.Clipboard.CLIPBOARD_CLEAR, clipboardEventHandler);
+						clipboard.addEventListener(com.xintend.ajbridge.local.clipboard.Clipboard.CLIPBOARD_CLEAR, clipboardEventHandler);
 			clipboard.addEventListener(com.xintend.ajbridge.local.clipboard.Clipboard.CLIPBOARD_SET, clipboardEventHandler);
 			
 			callbacks.getData =  clipboard.getData;
@@ -64,6 +63,9 @@ package {
 			
 			AJBridge.bridge.addCallback(callbacks);
 			AJBridge.bridge.activate();
+			AJBridge.bridge.contentReady();
+			
+			clipboard.setData(data, format);
 		}
 		
 		

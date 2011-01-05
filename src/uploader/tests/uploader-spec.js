@@ -13,7 +13,7 @@ describe("uploader",function(){
 		uploader, swfId = "uploader",container = "FC_SelectFilesBtn",
 		fileList,
 		defconfig={
-			src : "uploader.swf",
+			src : "../uploader.swf",
             params:{
                 wmode:"transparent"
             }	
@@ -267,7 +267,7 @@ describe("uploader",function(){
 			});
 			
 			
-           waitsFor(function(){ return hasListComplete; },"never ListComplete ",10000);
+           waitsFor(function(){ return hasListComplete; },"never ListComplete, make sure that you keep your upload server is running !",10000);
 		   
         });
 		

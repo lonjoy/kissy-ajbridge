@@ -30,7 +30,7 @@ describe("store",function(){
 	    A = AJBridge,
 		Store = A.Store,
 		defconfig={
-			src : "store.swf",
+			src : "../store.swf",
             params:{
                 bgcolor:"#C4C4C4"
             }	
@@ -384,7 +384,7 @@ describe("store",function(){
 			store.destroy();		
 		});
 		
-		it("should checkout another",function(){
+		it("should checkout other",function(){
 			var oldStorageName,tmpData=S.now();
 			
 			store.on("checkout", function(ev) {

@@ -6,5 +6,4 @@
     <allow-access-from domain="*.tbcdn.cn"/>
     <allow-access-from domain="*.allyes.com"/>
     <allow-access-from domain="127.0.0.1"/>
-    <allow-access-from domain="localhost"/>
 </domain-policy>

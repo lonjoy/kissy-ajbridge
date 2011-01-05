@@ -1,7 +1,7 @@
 /*
-Copyright 2010, KISSY UI Library v1.1.5
+Copyright 2011, KISSY UI Library v1.1.5
 MIT Licensed
-build time: Oct 25 10:48
+build time: Jan 5 11:39
 */
 /**
  * @author kingfo  oicuicu@gmail.com
@@ -16,22 +16,24 @@ AJBridge.add('uploader', function(A) {
      * @param {Object} config                                配置项
      * @param {String} config.ds                             default server 的缩写
      * @param {String} config.dsp                            default server parameters 的缩写
-     * @param {Boolean} config.dsr                           default server response 的缩写
      * @param {Boolean} config.btn                           启用按钮模式，默认 false
      * @param {Boolean} config.hand                          显示手型，默认 false
      */
     function Uploader(id, config) {
         config = config || { };
         var flashvars = { };
-
-        S.each(['ds', 'dsp', 'dsr', 'btn', 'hand'], function(key) {
-            if(key in config) flashvars[key] = config[key];
-        });
+		
+		
+		
+		S.each(['ds', 'dsp', 'btn', 'hand'], function(key) {
+			if(key in config) flashvars[key] = config[key];
+		});
+		
 
         config.params = config.params || { };
         config.params.flashvars = S.merge(config.params.flashvars, flashvars);
 
-        Uploader.superclass.constructor.call(this, id, config);
+		Uploader.superclass.constructor.call(this, id, config);
     }
 
     S.extend(Uploader, A);
@@ -56,6 +58,6 @@ AJBridge.add('uploader', function(A) {
         ]
         );
 
-    Uploader.version = '1.0.0';
+    Uploader.version = '1.0.1';
     A.Uploader = Uploader;
 });

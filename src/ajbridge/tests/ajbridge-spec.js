@@ -237,7 +237,6 @@ describe("ajbridge",function(){
 					
 					expect(failed.isSucc).toBe(undefined);
 					expect(error.isSucc).toBe(undefined);
-					expect(as3init.isSucc).toBe(undefined);
 					
 					expect(swfReady.isSucc).toBeTruthy();
 					expect(swfReady.ev.id).toBe(swfId);
@@ -313,10 +312,6 @@ describe("ajbridge",function(){
 					
 					expect(failed.isSucc).toBe(undefined);
 					expect(error.isSucc).toBe(undefined);
-					expect(as3init.isSucc).toBe(undefined);
-					
-					expect(addCallback.isSucc).toBe(undefined);
-					expect(addCallback.ev).toBe(undefined);
 					
 					
 					expect(swfReady.isSucc).toBeTruthy();

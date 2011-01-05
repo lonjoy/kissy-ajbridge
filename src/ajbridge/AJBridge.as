@@ -1,27 +1,25 @@
-﻿package {
-	import com.xintend.ajbridge.core.AJBridge;
+package {
 	import com.xintend.display.Spirit;
+	import com.xintend.ajbridge.core.AJBridge;
 	
 	/**
 	 * ...
 	 * @author Kingfo[Telds longzang]
 	 */
-	public class AJBridgeTest extends Spirit {
+	public class AJBridge extends Spirit {
 		
-		public function AJBridgeTest():void {
+		public function AJBridge() {
 			
 		}
 		
 		override public function init():void {
 			super.init();
 			// entry point
-			
 			var params: Object = stage.loaderInfo.parameters;
 			trace("AJBridge");
-			AJBridge.bridge.deploy(params);
+			com.xintend.ajbridge.core.AJBridge.bridge.deploy(params);
 			
-			AJBridge.bridge.activate();
-			
+			com.xintend.ajbridge.core.AJBridge.bridge.activate();
 		}
 		
 	}
