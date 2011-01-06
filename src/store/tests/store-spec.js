@@ -176,7 +176,7 @@ describe("store",function(){
 			store.destroy();		
 		});
 		
-		it("should checkout another",function(){
+		it("should checkout other",function(){
 			var oldStorageName,tmpData=S.now();
 			
 			store.on("checkout", function(ev) {
@@ -197,7 +197,6 @@ describe("store",function(){
 				store.destroy();
 				store.checkout(oldStorageName);
 			});
-			
 			
 			waits(100);
 			runs(function(){

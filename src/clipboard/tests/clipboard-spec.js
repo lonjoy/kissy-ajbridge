@@ -84,6 +84,7 @@ describe("clipboard",function(){
 					expect(clipboard.getData()).toEqual(DEFAULT_DATA);
 					clipboard.clearData();
 					expect(clipboard.getData()).not.toEqual(DEFAULT_DATA);
+					alert(DEFAULT_DATA);
 					clipboard.setData(DEFAULT_DATA);
 					expect(clipboard.getData()).toEqual(DEFAULT_DATA);
 					clipboard.clearData();

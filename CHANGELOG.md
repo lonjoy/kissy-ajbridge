@@ -15,12 +15,12 @@ Legend of version history:
 History:
 --------
 
-### release 1.0-pkg -> r1.x.x (2010/MM/DD)
- - [!] 今后版本号会变更为 r开头
+### release 1.0-pkg -> v1.2.0 (2010/MM/DD)
+ - [!] 今后版本号会变更为 v 开头
  - [x] 已知BUG修复
  - [x] 新增和打包了部分文件
- - [+] 增加 uploader [80%]
-
+ - [+] 增加 uploader
+ - [+] 增加 clipboard
 
 ### per 1.1.12 -> release-1.0 & release-1.0-pkg (2010/09/09)
  - [+] 完成 AJBridge 和 Store 的 API文档   [AJBridge API](http://kissyteam.github.com/kissy-ajbridge/docs/index.html)

@@ -46,19 +46,11 @@
 					</h4>
                     <div class="detail">
                        <p>AJBridge 的版本信息</p>
-					   <dl>
-                    		<dt>Version: <code>1.0+</code></dt>
-							<dt>Core: <code>1.0+</code></dt>
-                    	</dl>
                     </div>
 					  <h4>
                     	<a name="prop_instances">instances</a> - <code>Object</code>
 					</h4>
                     <div class="detail">
-                    	<dl>
-                    		<dt>Version: <code>1.0+</code></dt>
-							<dt>Core: <code>1.0+</code></dt>
-                    	</dl>
                        <p>AJBridge 注册对象池</p>
 					   <p class="notice">建议在一般情况下做只读操作。</p>
                     </div>
@@ -71,10 +63,6 @@
                         <code>void <em>eventHandler</em>(id, event)</code>
                     </h4>
                     <div class="detail">
-                    	<dl>
-                    		<dt>Version: <code>1.0+</code></dt>
-							<dt>Core: <code>1.0+</code></dt>
-                    	</dl>
                     	<p> AJBridge 注册对象事件分配器。</p>
 						 <dl class="parameters">
                             <dt>Parameters:</dt>
@@ -97,10 +85,6 @@
                         <code>void <em>augment</em>(C, methods)</code>
                     </h4>
                     <div class="detail">
-                    	<dl>
-                    		<dt>Version: <code>1.0+</code></dt>
-							<dt>Core: <code>1.0+</code></dt>
-                    	</dl>
                     	<p>批量注册 SWF 中公开的方法。</p>
                     	<p class="tips">是 AJBridge 扩展应用必用方法。</p>
 						<dl class="parameters">
@@ -151,10 +135,6 @@ AJBridge.augment(Store,
                         <code>void <em>init</em>()</code>
                     </h4>
                     <div class="detail">
-                    	<dl>
-                    		<dt>Version: <code>1.0+</code></dt>
-							<dt>Core: <code>1.0+</code></dt>
-                    	</dl>
                         <p>初始化 AJBridge 实例</p>
 						<p class="notice">请将此函数放置至配置和监听函数之后。</p>
 						<p>以下为推荐格式:</p>
@@ -183,10 +163,6 @@ aj.init();
                         <code>any <em>callSWF</em>(func, args)</code>
                     </h4>
                     <div class="detail">
-                    	<dl>
-                    		<dt>Version: <code>1.0+</code></dt>
-							<dt>Core: <code>1.0+</code></dt>
-                    	</dl>
                         <p>调用 swf 的方法</p>
 						<p class="tips">若没有该方法注册过，则将不会被执行。</p>
 						<p class="notice">不推荐直接使用该方法，仅在子类覆盖时参考使用。</p>
@@ -211,10 +187,6 @@ aj.init();
                         <code>void <em>activate</em>(config)</code>
                     </h4>
                     <div class="detail">
-                    	<dl>
-	                		<dt>Version: <code>1.0+</code></dt>
-							<dt>Core: <code>2.0+</code></dt>
-	                	</dl>
                         <p>激活<a href="http://kissyteam.github.com/kissy/docs/flash/practice/examples/publishing-static.html" target="_blank">静态发布方式</a>的 swf </p>
 						<p>使用时静态发布方式需注意以下几点:</p>
 						<ol>
@@ -274,10 +246,6 @@ a.init();
                         <code>String <em>getReady</em>()</code>
                     </h4>
 					<div class="detail">
-						<dl>
-	                		<dt>Version: <code>1.0+</code></dt>
-							<dt>Core: <code>1.0+</code></dt>
-	                	</dl>
                         <p>校验 AJBridge 是否可用</p>
 						<p class="tips">返回值始终固定为  "ready"。</p>
 						<dl class="parameters">
@@ -355,16 +323,7 @@ a.init();
                         <a name="event_addCallback">addCallback</a>
                     </h4>
                     <div class="detail">
-                        <p> SWF 动态添加了向 js 公开的单个方法。</p>
-						<p class="notice"> 仅在<a href="http://kissyteam.github.com/kissy/docs/flash/practice/examples/publishing-static.html" target="_blank">动态发布方式</a>有该事件。</p>
-                    </div>
-				</div>
-				<div class="member event">
-                    <h4>
-                        <a name="event_addCallback">addCallbacks</a>
-                    </h4>
-                    <div class="detail">
-                        <p> SWF 动态添加了向 js 公开的一组方法。</p>
+                        <p> SWF 动态添加了向 js 公开的N个方法(N>=1)。</p>
 						<p class="notice"> 仅在<a href="http://kissyteam.github.com/kissy/docs/flash/practice/examples/publishing-static.html" target="_blank">动态发布方式</a>有该事件。</p>
                     </div>
 				</div>
@@ -412,7 +371,6 @@ a.init();
                     <li><a href="#event_error">error</a></li>
                     <li><a href="#event_init">init</a></li>
                     <li><a href="#event_addCallback">addCallback</a></li>
-                    <li><a href="#event_addCallbacks">addCallbacks</a></li>
                     <li><a href="#event_swfReady">swfReady</a></li>
                 </ul>
             </div>
