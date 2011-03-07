@@ -14,6 +14,7 @@ package {
 	import flash.events.ProgressEvent;
 	import flash.events.SecurityErrorEvent;
 	import flash.system.Security;
+	import flash.system.System;
 	
 	/**
 	 * ...
@@ -23,6 +24,7 @@ package {
 		
 		public function SWFUploader():void {
 			Security.allowDomain("*");
+			//System.useCodePage = true;
 		}
 		
 		override public function init():void {
