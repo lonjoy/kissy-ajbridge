@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>JS vs SWF test</title>
+		<!-- basic -->
+		<script src="../../../../kissy/build/kissy.js"></script>
+		<script src="../../../../kissy/build/flash/flash-pkg.js"></script> 
+		
+		<!-- ajbridge -->
+		<script src="../../ajbridge/ajbridge.js"></script>
+		
+		<!-- comp... -->
+		<script src="../imageloader.js"></script>
+	</head>
+	<body>
+		<h4>JS Result</h4>
+		<div id="jsresult"></div>
+		<button id="jsbtn" type="button" onclick="jsGo();">Go!</button>
+		<script>
+		var imgs =[
+		'http://img01.taobaocdn.com/tps/i1/T10UadXjBxXXXXXXXX-1024-768.jpg',
+		'http://img04.taobaocdn.com/tps/i4/T1kUedXiNxXXXXXXXX-1024-768.jpg',
+		'http://img03.taobaocdn.com/tps/i3/T1C_9dXmdxXXXXXXXX-1024-768.jpg',
+		'http://img02.taobaocdn.com/tps/i2/T1uKieXadXXXXXXXXX-1024-768.jpg',
+		'http://img01.taobaocdn.com/tps/i1/T13eeeXbdXXXXXXXXX-1024-768.jpg',
+		'http://img04.taobaocdn.com/tps/i4/T1reieXadXXXXXXXXX-1024-768.jpg',
+		'http://img03.taobaocdn.com/tps/i3/T15ueeXa8XXXXXXXXX-1024-768.jpg',
+		'http://img02.taobaocdn.com/tps/i2/T14KaeXc4XXXXXXXXX-1024-768.jpg',
+		'http://img03.taobaocdn.com/tps/i3/T1lp5eXXhtXXXXXXXX-1024-768.jpg',
+		'http://img02.taobaocdn.com/tps/i2/T1LV5eXn8sXXXXXXXX-1024-768.jpg',
+		'http://img01.taobaocdn.com/tps/i1/T1qp5eXo8sXXXXXXXX-1024-768.jpg',
+		'http://img04.taobaocdn.com/tps/i4/T1vpSeXittXXXXXXXX-1024-768.jpg',
+		'http://img03.taobaocdn.com/tps/i3/T1cVSeXjxtXXXXXXXX-1024-768.jpg',
+		'http://img02.taobaocdn.com/tps/i2/T10XKeXnhtXXXXXXXX-1024-768.jpg',
+		'http://img01.taobaocdn.com/tps/i1/T1tpOeXlxtXXXXXXXX-1024-768.jpg',
+		'http://img04.taobaocdn.com/tps/i4/T1kXKeXXpuXXXXXXXX-1024-768.jpg',
+		'http://img01.taobaocdn.com/tps/i1/T1fKeeXcXXXXXXXXXX-1024-768.jpg',
+		'http://img04.taobaocdn.com/tps/i4/T1Ad1eXjJXXXXXXXXX-1024-768.jpg',
+		'http://img03.taobaocdn.com/tps/i3/T1WtKeXbBaXXXXXXXX-1024-768.jpg',
+		'http://img02.taobaocdn.com/tps/i2/T1xtyeXjhaXXXXXXXX-1024-768.jpg',
+		'http://img02.taobaocdn.com/tps/i2/T1BoOdXc4wXXXXXXXX-1024-768.jpg',
+		'http://img01.taobaocdn.com/tps/i1/T1oUKdXf4wXXXXXXXX-1024-768.jpg',
+		'http://img04.taobaocdn.com/tps/i4/T1eEKdXf4wXXXXXXXX-1024-768.jpg',
+		'http://img03.taobaocdn.com/tps/i3/T1BECdXkNwXXXXXXXX-1024-768.jpg',
+		'http://img02.taobaocdn.com/tps/i2/T1u.udXXhxXXXXXXXX-1024-768.jpg',
+		'http://img01.taobaocdn.com/tps/i1/T10EydXmdwXXXXXXXX-1024-768.jpg',
+		'http://img04.taobaocdn.com/tps/i4/T1UoudXohwXXXXXXXX-1024-768.jpg',
+		'http://img03.taobaocdn.com/tps/i3/T1KoidXe8xXXXXXXXX-1024-768.jpg',
+		'http://img01.taobaocdn.com/tps/i1/T1OIGeXlFcXXXXXXXX-3280-4800.png'
+		];
+						
+		var jsGo = function() {
+			var jsresult = document.getElementById('jsresult'),count = 0;
+			document.getElementById('jsbtn').style.visibility = 'hidden';
+			
+			function getRect(img) {
+
+
+
+				var w = img.width,
+
+					h = img.height;
+
+
+
+				if (w > 100 && h > 100) {
+
+
+
+					return [w, h];
+
+
+
+				}
+
+
+
+				return false;
+
+
+
+			}
+
+
+
+			function run() {
+
+
+
+				var src = imgs[count], i = new Image(), c = 0, t = new Date().getTime();
+
+				i.src = src;
+
+
+
+				setTimeout(function() {
+
+					++c;
+
+					var rect = getRect(i);	
+
+					if (rect) {
+
+						jsresult.innerHTML += '大小: ' + rect.toString() + ', 时间: ' + (new Date().getTime() - t) + ', 尝试次数: ' + c + '<br>';
+
+						if (count < (imgs.length - 1)) {
+
+							run(imgs[++count]);
+
+						}
+
+					} else {
+
+						setTimeout(arguments.callee, 50);
+
+					}
+
+					
+
+				}, 50);
+
+
+
+			}
+
+		
+
+			run();
+
+		
+		};
+	</script>
+	
+	<h4>SWF Result</h4>
+	<div id="swfresult"></div>
+	<div id="FC"></div>
+	<button id="swfbtn" type="button" onclick="swfGo();">GO!</button>
+	<script>
+		// SWF test
+		var swfGo = function(){
+			var swfresult = document.getElementById('swfresult');
+			document.getElementById('swfbtn').style.visibility = 'hidden';
+			var	A = AJBridge,
+				Loader = A.ImageLoader,
+				swfId = "ks-image-loader",
+				container = "FC",
+				captureTimeBox = {},
+				config={
+					id:swfId,
+					src : "../imageloader.swf",
+		            params:{
+		                bgcolor:"#C4C4C4"
+		            },
+					attrs: {
+		                width: 1,
+		                height: 1
+		            },
+					auto:false	
+				};
+				loader = new Loader(container,config);
+				
+				loader.on("contentReady", function(ev) {
+					for(var i= 0 , n = imgs.length;i < n; i++){
+						loader.add(imgs[i])
+					}
+	                  loader.launch();
+	            });
+				loader.on('item',function(ev){
+					captureTimeBox[ev.info.src] = new Date().getTime();
+				});	
+				loader.on('itemCapture',function(ev){
+					captureTimeBox[ev.info.src] = new Date().getTime() - captureTimeBox[ev.info.src];
+					swfresult.innerHTML += '大小: ' + ev.info.width + ',' + ev.info.height + ', 时间: ' + captureTimeBox[ev.info.src] + 'ms <br>';;
+				});
+				
+		}
+	</script>
+	
+		
+	</body>
+</html>

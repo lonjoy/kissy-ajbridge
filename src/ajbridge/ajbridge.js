@@ -127,7 +127,6 @@ KISSY.add('ajbridge', function(S) {
                 type = event.type;
 			
             event.id = id;   //	弥补后期 id 使用
-           
             switch(type){
 				case "log":
 					 S.log(event.message);
