@@ -265,7 +265,7 @@
 				clipboard.on("mouseDown",function(ev){
 					var oArea = D.get("#inputArea"),oData = D.attr(oArea,'data-content');
 					if(oData && oData !== ""){
-						oArea.value = D.attr(oArea,'data-content');
+						oArea.value += D.attr(oArea,'data-content');
 						alert('粘贴成功！');
 					}else{
 						alert('粘贴板中无内容！');
