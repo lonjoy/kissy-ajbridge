@@ -9,7 +9,7 @@ describe("uploader",function(){
 	    A = AJBridge,
 		doc = document,win = window,
 		Uploader = A.Uploader,
-		server = 'http://127.0.0.1:8080/upload.php',
+		server = 'http://127.0.0.1/upload.php',
 		uploader, swfId = "uploader",container = "FC_SelectFilesBtn",
 		fileList,
 		defconfig={
