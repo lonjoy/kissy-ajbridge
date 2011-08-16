@@ -6,7 +6,7 @@ KISSY.add('ajbridge', function(S) {
 
     var Flash = S.Flash,
         ID_PRE = '#',
-        VERSION = '1.0.14',
+        VERSION = '1.0.15',
 		PREFIX = 'ks-ajb-',
 		LAYOUT = 100,
         EVENT_HANDLER = 'KISSY.AJBridge.eventHandler'; // Flash 事件抛出接受通道
@@ -167,7 +167,7 @@ KISSY.add('ajbridge', function(S) {
     AJBridge.augment(AJBridge, ['activate', 'getReady','getCoreVersion']);
 
     window.AJBridge = S.AJBridge = AJBridge;
-});
+}, { requires:["flash"] });
 /**
  * NOTES:
  * 2010/07/22     完成基本代码
