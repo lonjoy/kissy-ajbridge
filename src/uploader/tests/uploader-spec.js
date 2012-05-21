@@ -9,7 +9,7 @@ describe("uploader",function(){
 	    A = AJBridge,
 		doc = document,win = window,
 		Uploader = A.Uploader,
-		server = 'http://127.0.0.1/upload.php',
+		server = 'http://longzang.taobao.ali.com/lab/Kissy/github/kissy-ajbridge/src/uploader/upload.php',
 		uploader, swfId = "uploader",container = "FC_SelectFilesBtn",
 		fileList,
 		defconfig={

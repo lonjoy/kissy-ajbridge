@@ -7,8 +7,8 @@ KISSY.add('ajbridge', function(S) {
     var Flash = S.Flash,
         ID_PRE = '#',
         VERSION = '1.0.15',
-		PREFIX = 'ks-ajb-',
-		LAYOUT = 100,
+        PREFIX = 'ks-ajb-',
+        LAYOUT = 100,
         EVENT_HANDLER = 'KISSY.AJBridge.eventHandler'; // Flash 事件抛出接受通道
 
     /**
@@ -28,24 +28,24 @@ KISSY.add('ajbridge', function(S) {
                     self.fire('failed', { data: data });
                     return;
                 }
-				
+
                 S.mix(self, data);
 
                 // 执行激活 静态模式的 flash
                 // 如果这 AJBridge 先于 DOMReady 前执行 则失效
                 // 建议配合 S.ready();
                 if (!data.dynamic || !config.src) {
-						self.activate();
+                        self.activate();
                 }
             };
-		
-		// 自动产生 id	
-		config.id = config.id || S.guid(PREFIX);
+
+        // 自动产生 id
+        config.id = config.id || S.guid(PREFIX);
 
         // 注册应用实例
         AJBridge.instances[config.id] = self;
 
-        //	动态方式
+        //    动态方式
         if (config.src) {
             // 强制打开 JS 访问授权，AJBridge 的最基本要求
             config.params.allowscriptaccess = 'always';
@@ -60,11 +60,11 @@ KISSY.add('ajbridge', function(S) {
 
         // 支持静态方式，但是要求以上三个步骤已静态写入
         // 可以参考 test.html
-		
+
         // 由于完全基于事件机制，因此需要通过监听之后进行初始化 Flash
-		
+
         if(manual)self.__args = [target, config, callback];
-		else S.later(Flash.add,LAYOUT,false,Flash,[target, config, callback]);
+        else S.later(Flash.add,LAYOUT,false,Flash,[target, config, callback]);
     }
 
     /**
@@ -98,8 +98,8 @@ KISSY.add('ajbridge', function(S) {
                 methods = [methods];
             }
             if (!S.isArray(methods)) return;
-			
-			
+
+
 
             S.each(methods, function(methodName) {
                 C.prototype[methodName] = function() {
@@ -116,25 +116,25 @@ KISSY.add('ajbridge', function(S) {
     S.augment(AJBridge, S.EventTarget, {
 
         init: function() {
-			if(!this.__args)return;
+            if(!this.__args)return;
             Flash.add.apply(Flash, this.__args);
-			this.__args = null;
-			delete this.__args; // 防止重复添加
+            this.__args = null;
+            delete this.__args; // 防止重复添加
         },
 
         __eventHandler: function(id, event) {
             var self = this,
                 type = event.type;
-			
-            event.id = id;   //	弥补后期 id 使用
+
+            event.id = id;   //    弥补后期 id 使用
             switch(type){
-				case "log":
-					 S.log(event.message);
-					break;
-				default:
-					self.fire(type, event);
-			}
-			
+                case "log":
+                     S.log(event.message);
+                    break;
+                default:
+                    self.fire(type, event);
+            }
+
         },
 
         /**
@@ -174,7 +174,7 @@ KISSY.add('ajbridge', function(S) {
  * 2010/08/08     由于KISSY.Flash重构，因此AJBridge也进行了改动。
  * 2010/08/09     AJBridge的 AS3 新增了 静态的动态激活。因此 内部增加了activete()的方法。
  * 2010/08/10     向 sandbox 提交了代码
- * 2010/08/11     修改 eventHandler(event) 转为  eventHandler(id,event).  
+ * 2010/08/11     修改 eventHandler(event) 转为  eventHandler(id,event).
  *                变更版本号 1.0.10
  * 2010/08/27     变更 AJBridge 作为  KISSY的独立应用，并注册到全局。
  *                修改 addMethods 更换为 augment
@@ -183,10 +183,10 @@ KISSY.add('ajbridge', function(S) {
  * 2010/10/27     重构基于 Kissy.Flash 1.2版本最新核心
  *                修改手工 init() 转为 默认延时自动模式，即 new 一个实例对象时即创建，同时又保留手工模式，由 manual 决定
  *                新增事件 bridgeReady 作为 ajbridge 创建完成的标准事件。 由于 IE 通过 innerHTML 创建时立即会创建SWF 造成实例合并bug。
- *                当前版本号 1.0.13                
+ *                当前版本号 1.0.13
  * 2010/11/18     移除事件 bridgeReady 。由flash内部延迟处理后再需要此事件。
  *                新增 swf 核心版本号. 通过 ajbridge.getCoreVersion() 获取。
  *                新增 swf 核心状态验证. 通过 ajbridge.getReady()获取，其值恒等于 "ready"。
- *                修改匿名 flash 前缀从 "ajb-flash-" 至 "ks-ajb-"  
- *                当前版本号 1.0.14    
+ *                修改匿名 flash 前缀从 "ajb-flash-" 至 "ks-ajb-"
+ *                当前版本号 1.0.14
  */

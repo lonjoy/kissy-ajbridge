@@ -8,6 +8,7 @@ package {
 	import flash.events.Event;
 	import flash.system.Security;
 	import flash.utils.getDefinitionByName;
+	import web.securtiy.parameter.antiXSS;
 	
 	/**
 	 * ...
@@ -24,7 +25,7 @@ package {
 			// entry point
 			trace(1);
 			
-			var params: Object = stage.loaderInfo.parameters;
+			var params: Object = antiXSS(stage.loaderInfo.parameters);
 			var callbacks: Object = { };
 			
 			stage.scaleMode = "noScale";

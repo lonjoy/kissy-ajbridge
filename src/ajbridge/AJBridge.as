@@ -1,6 +1,7 @@
 package {
 	import com.xintend.display.Spirit;
 	import com.xintend.ajbridge.core.AJBridge;
+	import web.securtiy.parameter.antiXSS;
 	
 	/**
 	 * ...
@@ -9,13 +10,13 @@ package {
 	public class AJBridge extends Spirit {
 		
 		public function AJBridge() {
-			
+
 		}
 		
 		override public function init():void {
 			super.init();
 			// entry point
-			var params: Object = stage.loaderInfo.parameters;
+			var params: Object = antiXSS(stage.loaderInfo.parameters);
 			trace("AJBridge");
 			com.xintend.ajbridge.core.AJBridge.bridge.deploy(params);
 			

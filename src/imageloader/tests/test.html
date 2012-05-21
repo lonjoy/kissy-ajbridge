@@ -1,32 +1,32 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset='utf-8'/>
-		<title>AJBridge ImageLoader Test Runner</title>
-		<!-- include jasmine  -->
-		<link rel="stylesheet" href="../../../tools/jasmine/jasmine.css">
-		<script src="../../../tools/jasmine/jasmine.js"></script>
-		<script src="../../../tools/jasmine/jasmine-html.js"></script>
-		
-		<!-- basic -->
-		<script src="../../../../kissy/build/kissy.js"></script>
-		<script src="../../../../kissy/build/flash-min.js"></script> 
-		
-		<!-- ajbridge -->
-		<script src="../../ajbridge/ajbridge.js"></script>
-		
-		<!-- comp... -->
-		<script src="../imageloader.js"></script>
-		<script src="imageloader-spec.js"></script>
-		
-	</head>
-	<body>
-		<script>
-		    jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
-		    jasmine.getEnv().execute();
-			jasmine.log()
-		</script>
-		
-		<div id="FC"></div>
-	</body>
+<head>
+    <meta charset='utf-8'/>
+    <title>AJBridge ImageLoader Test Runner</title>
+    <!-- include jasmine  -->
+    <link rel="stylesheet" href="../../../tools/jasmine/jasmine.css">
+    <script src="../../../tools/jasmine/jasmine.js"></script>
+    <script src="../../../tools/jasmine/jasmine-html.js"></script>
+
+    <!-- basic -->
+    <script src="../../../tools/kissy-1.1.7/build/kissy.js"></script>
+    <script src="../../../tools/kissy-1.1.7/build/flash/flash-pkg.js"></script>
+
+    <!-- ajbridge -->
+    <script src="../../ajbridge/ajbridge.js"></script>
+
+    <!-- comp... -->
+    <script src="../imageloader.js"></script>
+    <script src="imageloader-spec.js"></script>
+
+</head>
+<body>
+<script>
+    jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+    jasmine.getEnv().execute();
+    jasmine.log()
+</script>
+
+<div id="FC"></div>
+</body>
 </html>
