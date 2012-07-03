@@ -167,6 +167,8 @@ KISSY.add('ajbridge', function(S) {
     AJBridge.augment(AJBridge, ['activate', 'getReady','getCoreVersion']);
 
     window.AJBridge = S.AJBridge = AJBridge;
+
+
 }, { requires:["flash"] });
 /**
  * NOTES:

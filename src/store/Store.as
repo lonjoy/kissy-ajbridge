@@ -11,7 +11,7 @@
 	import flash.events.SecurityErrorEvent;
 	import flash.system.Security;
 	import flash.system.SecurityPanel;
-	import web.securtiy.parameter.antiXSS;
+	import web.security.external.SecurityExternalInterface;
 	
 	/**
 	 * ...
@@ -29,8 +29,8 @@
 		override public function init():void {
 			super.init();
 			// entry point 
-			
-			var flashvars: Object = antiXSS(stage.loaderInfo.parameters);
+			SecurityExternalInterface.watch(this);
+			var flashvars: Object = stage.loaderInfo.parameters;
 			
 			// 1. deploy ajbridge
 			AJBridge.bridge.deploy(flashvars);

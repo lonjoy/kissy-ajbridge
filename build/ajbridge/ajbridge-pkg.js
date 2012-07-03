@@ -1,7 +1,7 @@
 /*
 Copyright 2012, KISSY UI Library v1.1.5
 MIT Licensed
-build time: May 21 11:55
+build time: Jul 3 10:48
 */
 /**
  * AJBridge Class

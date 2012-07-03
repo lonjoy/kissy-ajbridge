@@ -1,159 +1,150 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8"/>
-		<title>JS vs SWF test</title>
-		<!-- basic -->
-		<script src="../../../../kissy/build/kissy.js"></script>
-		<script src="../../../../kissy/build/flash.js"></script> 
-		
-		<!-- ajbridge -->
-		<script src="../../ajbridge/ajbridge.js"></script>
-		
-		<!-- comp... -->
-		<script src="../imageloader.js"></script>
-	</head>
-	<body>
-		<h4>JS Result</h4>
-		<div id="jsresult"></div>
-		<button id="jsbtn" type="button" onclick="jsGo();">Go!</button>
-		<script>
-		var imgs =[
-		'assets/mm.png',
-		'assets/d-1240x1754.jpg',
-		'assets/200911201003040589.gif',
-		'assets/123.gif',
-		'assets/not-found.url',
-		'imageloader-spec.js',
-		'http://a248.e.akamai.net/assets.github.com/images/modules/header/logov5-hover.png' // item_security_error
-		];
-						
-		var jsGo = function() {
-			var jsresult = document.getElementById('jsresult'),count = 0;
-			document.getElementById('jsbtn').style.visibility = 'hidden';
-			
-			function getRect(img) {
+<head>
+    <meta charset="utf-8"/>
+    <title>JS vs SWF test</title>
+    <!-- basic -->
+    <script src="../../../lib/kissy-1.1.7/build/kissy.js"></script>
+    <script src="../../../lib/kissy-1.1.7/build/flash/flash-pkg.js"></script>
+
+    <!-- ajbridge -->
+    <script src="../../ajbridge/ajbridge.js"></script>
+
+    <!-- comp... -->
+    <script src="../imageloader.js"></script>
+</head>
+<body>
+<h4>JS Result</h4>
+
+<div id="jsresult"></div>
+<button id="jsbtn" type="button" onclick="jsGo();">Go!</button>
+<script>
+    var imgs = [
+        'assets/mm.png',
+        'assets/d-1240x1754.jpg',
+        'assets/200911201003040589.gif',
+        'assets/123.gif',
+        'assets/not-found.url',
+        'imageloader-spec.js',
+        'http://a248.e.akamai.net/assets.github.com/images/modules/header/logov5-hover.png' // item_security_error
+    ];
+
+    var jsGo = function() {
+        var jsresult = document.getElementById('jsresult'),count = 0;
+        document.getElementById('jsbtn').style.visibility = 'hidden';
+
+        function getRect(img) {
 
 
+            var w = img.width,
 
-				var w = img.width,
-
-					h = img.height;
-
+                    h = img.height;
 
 
-				if (w > 100 && h > 100) {
+            if (w > 100 && h > 100) {
 
 
-
-					return [w, h];
-
+                return [w, h];
 
 
-				}
+            }
 
 
-
-				return false;
-
+            return false;
 
 
-			}
+        }
 
 
-
-			function run() {
-
+        function run() {
 
 
-				var src = imgs[count], i = new Image(), c = 0, t = new Date().getTime();
+            var src = imgs[count], i = new Image(), c = 0, t = new Date().getTime();
 
-				i.src = src;
-
-
-
-				setTimeout(function() {
-
-					++c;
-
-					var rect = getRect(i);	
-
-					if (rect) {
-
-						jsresult.innerHTML += '大小: ' + rect.toString() + ', 时间: ' + (new Date().getTime() - t) + ', 尝试次数: ' + c + '<br>';
-
-						if (count < (imgs.length - 1)) {
-
-							run(imgs[++count]);
-
-						}
-
-					} else {
-
-						setTimeout(arguments.callee, 50);
-
-					}
-
-					
-
-				}, 50);
+            i.src = src;
 
 
+            setTimeout(function() {
 
-			}
+                ++c;
 
-		
+                var rect = getRect(i);
 
-			run();
-		
-		};
-	</script>
-	
-	<h4>SWF Result</h4>
-	<div id="swfresult"></div>
-	<div id="FC"></div>
-	<button id="swfbtn" type="button" onclick="swfGo();">GO!</button>
-	<script>
-		// SWF test
-		var swfGo = function(){
-			var swfresult = document.getElementById('swfresult');
-			document.getElementById('swfbtn').style.visibility = 'hidden';
-			var	A = AJBridge,
-				Loader = A.ImageLoader,
-				swfId = "ks-image-loader",
-				container = "FC",
-				captureTimeBox = {},
-				config={
-					id:swfId,
-					src : "../imageloader.swf",
-		            params:{
-		                bgcolor:"#C4C4C4"
-		            },
-					attrs: {
-		                width: 1,
-		                height: 1
-		            },
-					auto:false	
-				};
-				loader = new Loader(container,config);
-				
-				loader.on("contentReady", function(ev) {
-					for(var i= 0 , n = imgs.length;i < n; i++){
-						loader.add(imgs[i])
-					}
-	                  loader.launch();
-	            });
-				loader.on('item',function(ev){
-					captureTimeBox[ev.info.src] = new Date().getTime();
-				});	
-				loader.on('itemCapture',function(ev){
-					captureTimeBox[ev.info.src] = new Date().getTime() - captureTimeBox[ev.info.src];
-					swfresult.innerHTML += '大小: ' + ev.info.width + ',' + ev.info.height + ', 时间: ' + captureTimeBox[ev.info.src] + 'ms <br>';;
-				});
-				
-		}
-	</script>
-	
-		
-	</body>
+                if (rect) {
+
+                    jsresult.innerHTML += '大小: ' + rect.toString() + ', 时间: ' + (new Date().getTime() - t) + 'ms, 尝试次数: ' + c + '<br>';
+
+                    if (count < (imgs.length - 1)) {
+
+                        run(imgs[++count]);
+
+                    }
+
+                } else {
+
+                    setTimeout(arguments.callee, 50);
+
+                }
+
+
+            }, 50);
+
+
+        }
+
+
+        run();
+
+    };
+</script>
+
+<h4>SWF Result</h4>
+
+<div id="swfresult"></div>
+<div id="FC"></div>
+<button id="swfbtn" type="button" onclick="swfGo();">GO!</button>
+<script>
+    // SWF test
+    var swfGo = function() {
+        var swfresult = document.getElementById('swfresult');
+        document.getElementById('swfbtn').style.visibility = 'hidden';
+        var A = AJBridge,
+                Loader = A.ImageLoader,
+                swfId = "ks-image-loader",
+                container = "FC",
+                captureTimeBox = {},
+                config = {
+                    id:swfId,
+                    src : "../imageloader.swf",
+                    params:{
+                        bgcolor:"#C4C4C4"
+                    },
+                    attrs: {
+                        width: 1,
+                        height: 1
+                    },
+                    auto:false
+                };
+        loader = new Loader(container, config);
+
+        loader.on("contentReady", function(ev) {
+            for (var i = 0 , n = imgs.length; i < n; i++) {
+                loader.add(imgs[i])
+            }
+            loader.launch();
+        });
+        loader.on('item', function(ev) {
+            captureTimeBox[ev.info.src] = new Date().getTime();
+        });
+        loader.on('itemCapture', function(ev) {
+            captureTimeBox[ev.info.src] = new Date().getTime() - captureTimeBox[ev.info.src];
+            swfresult.innerHTML += '大小: ' + ev.info.width + ',' + ev.info.height + ', 时间: ' + captureTimeBox[ev.info.src] + 'ms <br>';
+            ;
+        });
+
+    }
+</script>
+
+
+</body>
 </html>

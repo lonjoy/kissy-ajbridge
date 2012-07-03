@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'2012/5/21'</value>
+      <value>'2012/5/28'</value>
     </define>
     <optimize>true</optimize>
     <omit-trace-statements>true</omit-trace-statements>
@@ -25,7 +25,7 @@
       <path-element>D:\work\data\Lab\Kissy\github\kissy-ajbridge\src\uploader</path-element>
       <path-element>D:\work\data\Lab\Kissy\github\ajbridge-as3core\class</path-element>
       <path-element>D:\work\data\Lab\Xintend\github\ajbridge-as3core\libs\as3corelib\src</path-element>
-      <path-element>D:\work\data\Lab\flash_web_security\src</path-element>
+      <path-element>D:\work\data\Lab\flash_security\src</path-element>
       <path-element>d:\apps\FlashDevelop4\Library\AS3\classes</path-element>
     </source-path>
   </compiler>

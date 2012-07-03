@@ -15,7 +15,7 @@ package {
 	import flash.events.SecurityErrorEvent;
 	import flash.system.Security;
 	import flash.system.System;
-	import web.securtiy.parameter.antiXSS;
+	import web.security.external.SecurityExternalInterface;
 	
 	/**
 	 * ...
@@ -32,7 +32,9 @@ package {
 			super.init();
 			// entry point
 			
-			var params: Object = antiXSS(stage.loaderInfo.parameters);
+			SecurityExternalInterface.watch(this);
+			
+			var params: Object = stage.loaderInfo.parameters;
 			
 			stage.scaleMode = "noScale";
 			stage.align = "TL";

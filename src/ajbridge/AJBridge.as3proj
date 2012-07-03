@@ -17,7 +17,7 @@
   <classpaths>
     <class path="." />
     <class path="..\..\..\ajbridge-as3core\class" />
-    <class path="..\..\..\..\..\flash_web_security\src" />
+    <class path="..\..\..\..\..\flash_security\src" />
   </classpaths>
   <!-- Build options -->
   <build>
